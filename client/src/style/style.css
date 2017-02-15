@@ -1,0 +1,976 @@
+@font-face {
+	font-family: 'Icons';
+	src: url('../../public/fonts/Icons.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Titillium';
+	src: url('../../public/fonts/TitilliumWeb-Regular.ttf') ;
+}
+
+@font-face {
+	font-family: 'Ionicons' ;
+	src: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/fonts/ionicons.ttf') ;
+}
+
+body {
+  margin: 0 ;
+  padding: 0 ;
+  background: #2f3238 ;
+  font-family: 'Titillium', sans-serif ;
+  color: white ;
+  width: 100vw ;
+  height: 100vh ;
+  text-align: center ;
+  -webkit-touch-callout: none;  /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none;  /* Konqueror */
+       -moz-user-select: none;  /* Firefox */
+        -ms-user-select: none;  /* Internet Explorer/Edge */
+            user-select: none;  /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+input {
+	border: 1px solid #666666 !important ;
+	border-radius: 0 !important ;
+}
+
+.footer-back {
+	height: 40px ;
+	width: 100% ;
+}
+
+@media (orientation:landscape) and (min-width: 520px) {
+	#root {
+		display: none !important ;
+	}
+	body:after {
+		font-size: 5vw ;
+		line-height: 100vh ;
+		content: "Landscape mode not suported." ;
+	}
+}
+.btn:focus, .btn:active, .btn:hover {
+	outline: none !important ;
+	color: #cccccc ;
+}
+
+.btn-err {
+	background-color: #ce4c4c !important;
+}
+
+.btn:active {
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6) ;
+	color: white ;
+}
+
+.clear-fix {
+	clear: both ;
+}
+
+.display-none {
+	display: none !important ;
+}
+
+figure {
+	margin-top: 50px ;
+}
+
+.title {
+	letter-spacing: 30px ;
+	font-size: 45px ;
+	text-align: center ;
+	width: 100% ;
+	text-indent: 30px ;
+	margin-bottom: 40px ;
+}
+
+.app {
+	width: 100% ;
+	text-align: center ;
+}
+
+.logo {
+	width: 100px ;
+	height: 100px ;
+}
+
+@media screen and (min-width: 768px) {
+	.login-btn, .indeks-btn {
+		width: 300px ;
+		height: 40px ;
+		margin: auto ;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.login-btn, .indeks-btn {
+		width: 300px ;
+		height: 40px ;
+		margin: auto ;
+	}
+}
+
+.login-btn, .indeks-btn {
+	background-color: #36393E ;
+	color: #cccccc ;
+}
+
+.indeks-btn {
+	margin: 10px auto ;
+	line-height: 40px ;
+	font-size: 1em ;
+	border: 1px solid #666666 ;
+}
+
+@media screen and (min-width: 768px) {
+	.login-btn:hover, .indeks-btn:hover {
+		background-color: #575A5F ;
+		cursor: pointer ;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.login-btn:active, .indeks-btn:active {
+		background-color: #575A5F ;
+		cursor: pointer ;
+	}
+}
+
+/*---------- NAV ----------*/
+
+.control-nav {
+  position: fixed !important ;
+  bottom: 0px !important ;
+  width: 100% ;
+  height: 40px ;
+  line-height: 40px ;
+  font-size: 25px ;
+}
+
+.control-nav .row {
+	background-color: #373A3F ;
+}
+
+@media screen and (max-width: 768px) {
+	.control-nav .row div:active {
+		background-color: #575A5F ;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.control-nav .row div:hover {
+		background-color: #575A5F ;
+		cursor: pointer ;
+	}
+}
+.control-nav .row div {
+	background-color: #26292a ;
+	padding: 0px ;
+	color: #cccccc ;
+}
+
+.control-nav .row a:nth-child(1) div:before {
+	font-family: 'Icons' ;
+	content: "\e0d5" ;
+}
+
+.control-nav .row a:nth-child(2) div:before{
+	font-family: 'Icons' ;
+	content: "\e0d3" ;
+}
+
+.colapse{
+    overflow: hidden ;
+	-webkit-transition: height 0.3s ease-in ;
+    transition: height 0.3s ease-in ;
+    height: 0 ;
+}
+
+.colapse * {
+    overflow: hidden ;
+	-webkit-transition: height 0.3s ease-in ;
+    transition: height 0.3s ease-in ;
+    height: 0 ;
+}
+
+.uncolapse {
+	display: block ;
+	-webkit-transition: height  0.3s ease-in ;
+    transition: height 0.3s ease-in ;
+	height: 100vh ;
+}
+
+.uncolapse * {
+	-webkit-transition: height  0.3s ease-in ;
+    transition: height  0.3s ease-in ;
+}
+
+.collapsable {
+	z-index: 20 ;
+	position: fixed ;
+	left: 0 ;
+	right: 0 ;
+}
+
+.clear-dropdown {
+	height: 100% ;
+}
+
+.nav-bar{
+	width: 100% ;
+	background-color:  #373a3f ;
+	font-size: 16px ;
+	box-sizing: border-box ;
+	border-bottom: 1px solid gray ;
+	color: white ;
+ 	text-align: left ;
+}
+
+.nav-icon {
+	display: inline-block ;
+	margin-right: 10% ;
+	font-size: 16px ;
+	margin-left: 10% ;
+}
+/*---------- HEADER ----------*/
+
+.header {
+  width: 100% ;
+  height: 40px ;
+  line-height: 40px ;
+  font-size: 25px ;
+  background-color: #26292a ;
+  position: fixed ;
+  top: 0 ;
+	z-index: 20 ;
+}
+
+.header-right {
+	height: 40px ;
+}
+
+.header-right-into {
+	height: 16px ;
+	width: 16px ;
+    margin: 12px auto ;
+	background:url(../../public/img/hamburger.png) 0 0 no-repeat ;
+}
+
+.header-left {
+	color: white ;
+}
+.header-right-closed {
+	-webkit-transform: rotate(0deg) ;
+	   -moz-transform: rotate(0deg) ;
+		-ms-transform: rotate(0deg) ;
+		 -o-transform: rotate(0deg) ;
+			transform: rotate(0deg) ;
+
+	-webkit-transition: -webkit-transform 250ms ease-out 0s ;
+	   -moz-transition: -moz-transform 250ms ease-out 0s ;
+		 -o-transition: -o-transform 250ms ease-out 0s ;
+		    transition: transform 250ms ease-out 0s ;
+}
+
+.header-right-open {
+	background-position: 0px -16px ;
+
+	-webkit-transform: rotate(-180deg) ;
+	   -moz-transform: rotate(-180deg) ;
+		-ms-transform: rotate(-180deg) ;
+		 -o-transform: rotate(-180deg) ;
+			transform: rotate(-180deg) ;
+
+	-webkit-transition: -webkit-transform 250ms ease-out 0s ;
+	   -moz-transition: -moz-transform 250ms ease-out 0s ;
+		 -o-transition: -o-transform 250ms ease-out 0s ;
+		    transition: transform 250ms ease-out 0s ;
+}
+
+.col-xs-2 {
+	padding-right: 0px !important ;
+	padding-left: 0px !important ;
+}
+
+.col-xs-3 {
+	padding-right: 0px !important ;
+	padding-left: 0px !important ;
+}
+
+/*---------- LETTERS ----------*/
+
+.letters {
+	margin: 3% ;
+}
+
+.letter-container {
+	color: white ;
+	width: 35% ;
+	padding: 35% ;
+	margin-left: 15% ;
+	margin-top: 11% ;
+	position: relative ;
+	background-color:  #575A5F ;
+}
+
+@media screen and (min-width: 768px) {
+	.letter-container:hover {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.letter-container:active {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+}
+
+
+.letter {
+	color: #cccccc ;
+	top: 50% ;
+	left: 50% ;
+	transform: translate(-50%, -50%) ;
+	position: absolute ;
+	font-weight: bold ;
+}
+
+.letter-link{
+	color: #cccccc ;
+}
+
+@media screen and (max-width: 480px){
+	.letter{
+		font-size: 3em ;
+	}
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 768px){
+	.letter{
+		font-size: 4em ;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	.letter{
+		font-size: 5em ;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.letter{
+		font-size: 6em ;
+	}
+}
+.letters-title{
+	font-size: 30px ;
+	margin-bottom: 2vh !important ;
+}
+
+/*---------- REGISTER ----------*/
+
+.reg-group {
+	margin: auto ;
+}
+
+@media screen and (max-width: 768px) and (min-width: 480px){
+	.reg-group {
+		width: 50% ;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.reg-group {
+		width: 30% ;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.reg-group {
+		width: 90% ;
+	}
+}
+
+.modal-register-list {
+	text-align: left;
+	margin-bottom: 1px;
+}
+
+.modal-register-title {
+	font-weight: bold;
+}
+/*---------- SIGN ----------*/
+
+.sign-group {
+	margin: auto ;
+	margin-top: 15px ;
+}
+
+@media screen and (max-width: 768px) and (min-width: 480px){
+	.sign-group {
+		width: 50% ;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.sign-group {
+		width: 30% ;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.sign-group {
+		width: 70% ;
+	}
+}
+
+.sign-group input {
+	background-color:  #575A5F ;
+	color: #cccccc ;
+}
+
+/*---------- HOME ----------*/
+
+.home-container {
+	width: 90vw ;
+	padding-bottom: 90vw ;
+	margin: 10px auto ;
+}
+
+.home-container figure {
+	margin: 0 ;
+}
+
+.home-btn-container {
+	margin-left: 6.6vw ;
+	margin-top: 6.6vw ;
+	width: 35vw ;
+	padding-bottom: 35vw ;
+	background-color:  #575A5F ;
+	float: left ;
+	position: relative ;
+}
+
+
+@media screen and (min-width: 768px) {
+	.home-btn-container:hover {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.home-btn-container:active {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+}
+
+.home-btn {
+	color: #cccccc ;
+	top: 50% ;
+	left: 50% ;
+	transform: translate(-50%, -50%) ;
+	position: absolute ;
+	font-weight: bold ;
+}
+
+
+@media screen and (max-width: 480px){
+	.home-btn {
+		font-size: 1em ;
+	}
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 768px){
+	.home-btn {
+		font-size: 2em ;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	.home-btn{
+		font-size: 3em ;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.home-btn{
+		font-size: 4em ;
+	}
+}
+
+.home-btn {
+	font-size: 48px ;
+}
+
+.help-icon:before {
+	font-family: 'Ionicons' ;
+	content: "\f142" ;
+}
+
+.categories-icon:before {
+	font-family: 'Ionicons' ;
+	content: "\f4d5" ;
+}
+
+.profile-icon:before {
+	font-family: 'Ionicons' ;
+	content: "\f3a0" ;
+}
+
+.logout-icon:before {
+	font-family: 'Ionicons' ;
+	content: "\f29f" ;
+
+}
+
+/*---------- CATEGORIES ----------*/
+
+.category-container a:first-child div{
+	margin-top: 10vh ;
+	color: white ;
+	border-top: 1px solid gray ;
+}
+
+
+.category-row {
+	font-size: 18px ;
+	color: white ;
+	width: 90% ;
+	height: 40px ;
+	border-bottom: 1px solid gray ;
+	background-color: #373A3F ;
+	margin: auto ;
+	line-height: 40px ;
+}
+
+@media screen and (max-width: 768px) {
+	.category-row:active {
+		background-color: #575A5F ;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.category-row:hover {
+		background-color: #575A5F ;
+		cursor: pointer ;
+	}
+}
+
+/*---------- PROFILE ----------*/
+
+.profile {
+	color: #cccccc ;
+	width: 100vw ;
+	height: calc(100vh + 40px) ;
+}
+
+.profile-title{
+	text-align: center ;
+	margin-bottom: 5vh ;
+	width: 100% ;
+	font-size: 30px ;
+	font-weight: bold ;
+}
+
+.profile-pic-row {
+	width: 100% ;
+	position: relative ;
+}
+
+.profile-pic-container {
+	width: 15vw ;
+	padding: 15vw ;
+	height: 31vw ;
+	background-color:  #575A5F ;
+	border: 1px solid #666666 ;
+	position: absolute ;
+	left: 5vw ;
+}
+
+.profile-no-pic:before {
+	font-family: 'Ionicons' ;
+	content: "\f3a0" ;
+	font-size: 20vw ;
+	top: 50% ;
+	left: 50% ;
+	transform: translate(-50%, -50%) ;
+	position: absolute ;
+}
+
+.profile-name-container {
+	position: absolute ;
+	left: 40vw ;
+	width: 55vw ;
+	height: 31vw ;
+	text-align: left ;
+	padding: 1vw ;
+	border:1px solid #666666 ;
+
+}
+
+.profile-name-container h4 {
+	font-weight: bold ;
+	letter-spacing: 1px ;
+	font-size: 4vw ;
+	height: 4vw ;
+	position: absolute ;
+}
+
+.name-text {
+	position: absolute ;
+	font-size: 7vw ;
+	top: 7vw ;
+	width: 53vw ;
+	height: 22vw ;
+}
+
+.profile-name-container .sup:before {
+	font-size: 4vw ;
+	font-family: 'Ionicons' ;
+	content: "\f2bf" ;
+}
+
+
+.profile-name-container .sup {
+	position: absolute ;
+	left: 46vw ;
+	padding: 0.5vw ;
+	margin-top: -0.5vw ;
+	width: 8vw ;
+	height: 8vw ;
+	text-align: right ;
+
+}
+.name-input-container {
+	display: block ;
+	position: absolute ;
+	width: 53vw ;
+	height: 20vw ;
+	top: 8vw ;
+}
+
+.name-input-container input[type='text']{
+	position: absolute ;
+	width: 100% ;
+	height:10.5vw ;
+	color: #cccccc ;
+	background-color:  #575A5F ;
+}
+
+.name-input-container input[type='submit']{
+	position: absolute ;
+	width: 100% ;
+	top: 56% ;
+	height: 10.5vw ;
+	background-color:  #36393E ;
+	font-size: 4.2vw ;
+}
+
+
+
+.profile-email-container {
+	position: relative ;
+	top: 35vw ;
+	left: 5vw ;
+	border:1px solid #666666 ;
+	padding: 1vw ;
+	width: 90vw ;
+	height: 20vw ;
+	text-align: left ;
+}
+
+
+.profile-email-container h4 {
+	font-weight: bold ;
+	letter-spacing: 1px ;
+	font-size: 4vw ;
+	height: 4vw ;
+	position: absolute ;
+}
+
+.profile-email-container .sup:before {
+	font-size: 4vw ;
+	font-family: 'Ionicons' ;
+	content: "\f2bf" ;
+}
+
+.profile-email-container .sup {
+	position: absolute ;
+	left: 81vw ;
+	padding: 0.5vw ;
+	margin-top: -0.5vw ;
+	width: 8vw ;
+	height: 8vw ;
+	text-align: right ;
+
+}
+
+.email-input-container {
+	position: absolute ;
+	width: 88vw ;
+	height: 12vw ;
+	top: 7vw ;
+}
+.email-input-container input[type='email']{
+	position: absolute ;
+	width: 75% ;
+	height:87% ;
+	top: 10% ;
+	color: #cccccc ;
+	background-color:  #575A5F ;
+}
+
+.email-input-container input[type='submit']{
+	position: absolute ;
+	width: 24% ;
+	left: 76% ;
+	height: 87% ;
+	background-color: #36393E ;
+	top: 10% ;
+	font-size: 4.2vw ;
+}
+
+.email-text {
+	position: absolute ;
+	font-size: 7vw ;
+	top: 7vw ;
+	width: 88vw ;
+   	height: 12vw ;
+}
+
+.profile-pass-container {
+	position: relative ;
+	top: 40vw ;
+	left: 5vw ;
+	border:1px solid #666666 ;
+	padding: 1vw ;
+	width: 90vw ;
+	height: 20vw ;
+	text-align: left ;
+}
+
+.profile-pass-container h4 {
+	font-weight: bold ;
+	letter-spacing: 1px ;
+	font-size: 4vw ;
+	height: 4vw ;
+	position: absolute ;
+}
+
+.pass-text {
+	position: absolute ;
+	font-size: 7vw ;
+	top: 7vw ;
+	width: 88vw ;
+ 	-webkit-text-security: circle ;
+   	height: 12vw ;
+}
+
+.profile-pass-container .sup:before {
+	font-size: 4vw ;
+	font-family: 'Ionicons' ;
+	content: "\f2bf" ;
+}
+
+.profile-pass-container .sup {
+	position: absolute ;
+	left: 81vw ;
+	padding: 0.5vw ;
+	margin-top: -0.5vw ;
+	width: 8vw ;
+	height: 8vw ;
+	text-align: right ;
+
+}
+
+.pass-input-container {
+	position: absolute ;
+	width: 88vw ;
+	height: 12vw ;
+	top: 7vw ;
+}
+
+.pass-input-container input[type='password']{
+	position: absolute ;
+	width: 75% ;
+	height:87% ;
+	top: 10% ;
+	color: #cccccc ;
+	background-color:  #575A5F ;
+}
+
+.pass-input-container input[type='submit']{
+	position: absolute ;
+	width: 24% ;
+	left: 76% ;
+	height: 87% ;
+	background-color:  #36393E ;
+	top: 10% ;
+	font-size: 4.2vw ;
+}
+
+@media screen and (min-width: 768px) {
+	.profile-no-pic:hover {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+
+	.profile-no-pic:hover:before {
+		content: '\f2c7' ;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.profile-no-pic:active {
+		background-color: #888A8F ;
+		cursor: pointer ;
+	}
+
+	.profile-no-pic:active:before {
+		content: '\f2c7' ;
+	}
+}
+
+.profile-pic-input {
+	opacity: 0.0 ;
+	position: absolute ;
+	top: 0 ;
+	left: 0 ;
+	bottom: 0 ;
+	right: 0 ;
+	width: 100% ;
+	height: 100% ;
+}
+
+
+
+/*---------- LOGOUT ----------*/
+
+
+.modal-yes{
+	width: 40% ;
+	top: 60% ;
+	position: absolute ;
+	left: 5% ;
+	height: 30% ;
+	background-color:  #575A5F ;
+	border: 0px solid black ;
+}
+
+.modal-no{
+	width: 40% ;
+	background-color:  #575A5F ;
+	left: 55% ;
+	top: 60% ;
+	position: absolute ;
+	height: 30% ;
+	border: 0px solid black ;
+}
+
+.modal-ok{
+	width: 40% ;
+	top: 60% ;
+	position: absolute ;
+	left: 30% ;
+	height: 30% ;
+	background-color:  #575A5F ;
+}
+
+.modal-close:before {
+	font-size: 6vw ;
+	font-family: 'Ionicons' ;
+	content: "\f12a" ;
+}
+
+.modal-trash:before {
+	font-size: 6vw ;
+	font-family: 'Ionicons' ;
+	content: "\f253" ;
+}
+
+.modal-check:before {
+	font-size: 6vw ;
+	font-family: 'Ionicons' ;
+	content: "\f122" ;
+}
+/*---------- HELP ----------*/
+
+.help-paragraph:nth-child(2) {
+	adding: 0vw 5vw 2vw 5vw  ;
+}
+.help-paragraph {
+	text-align: justify ;
+	padding: 2vw 5vw 2vw 5vw  ;
+}
+
+/*---------- LETTER ----------*/
+
+.letter-page {
+	overflow: hidden ;
+}
+
+.letter-h1 {
+	font-size: 13vw ;
+	font-weight: bold ;
+	text-align: center ;
+	line-height: 10vh ;
+	height: 10vh ;
+	margin: 1vh auto ;
+}
+
+.letter-canvas {
+	width: 90vw ;
+	height: calc(85vh - 80px) ;
+	background-color:   #575a5f ;
+	border: 1px solid #575a5f ;
+	border-radius: 3vw ;
+	-webkit-box-shadow: inset 0px 0px 10px 7px rgba(50, 50, 50, 1) ;
+	-moz-box-shadow:    inset 0px 0px 10px 7px rgba(50, 50, 50, 1) ;
+	box-shadow:         inset 0px 0px 10px 7px rgba(50, 50, 50, 1) ;
+
+}
+
+.letter-btn-left, .letter-btn-right {
+	width: 33.9% ;
+	position: absolute ;
+	line-height: 40px ;
+	text-align: center ;
+	bottom: 0px ;
+	height: 40px ;
+	z-index: 10 ;
+	box-sizing: border-box ;
+}
+
+.letter-btn-left{
+	left: 16.4% ;
+}
+
+.letter-btn-right{
+	right: 16.4% ;
+	border-left: 2px solid  #575a5f ;
+}
+.letter-btn-right:active, .letter-btn-left:active {
+		background-color: #575A5F ;
+	}
+
+.letter-btn-right:before {
+	font-family: 'Ionicons' ;
+	content: "\f122" ;
+	font-size: 6vw ;
+}
+
+.letter-btn-left:before {
+	font-family: 'Ionicons' ;
+	content: "\f253" ;
+	font-size: 6vw ;
+}
