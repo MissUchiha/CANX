@@ -1,6 +1,6 @@
 class Auth {
   static login(user, jwt) {
-    if(user !== undefined && jwt !== undefined && jwt.length !== 0 && Object.keys(user).length !== 0) {
+    if(user !== undefined && jwt !== undefined && user !== null && jwt !== null && jwt.length !== 0 && Object.keys(user).length !== 0) {
       localStorage.setItem('user', JSON.stringify(user))
       localStorage.setItem('jwt', jwt)
     }

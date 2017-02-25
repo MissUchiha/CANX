@@ -66,8 +66,8 @@ class Login extends React.Component {
     }
 
     onBlur(ev) {
-      let name = ev.target.name
-      let value = ev.target.value
+      const name = ev.target.name
+      const value = ev.target.value
 
       if(!this.testField(name,value))
         return false
@@ -77,10 +77,12 @@ class Login extends React.Component {
 
     login(ev) {
         ev.preventDefault()
-        if(utils.testEmail(this.credentials.email) && utils.testPass(this.credentials.password))
+        // ev.stopPropagation()
+        if(utils.testEmail(this.credentials.email) && utils.testPass(this.credentials.password)){
           this.props.actions.loginUser({ email: this.credentials.email,
                                          password: md5(this.credentials.password)
-                                       })
+          })
+        }
     }
 
    	render() {
@@ -105,7 +107,12 @@ class Login extends React.Component {
                        onChange={this.onChange}
                        className='form-control'/>
       				</div>
-      				<input type='submit' className='btn form-group login-btn sign-group' value='LOGIN' onClick={this.login} />
+      				<input type='submit'
+                     className='btn form-group login-btn sign-group'
+                     value='LOGIN'
+                     onClick={this.login}
+                    //  onTouchEnd={this.login}
+                     />
       			</form>
             <Modal isOpen={this.state.openModal}
                    onRequestClose={this.closeModal}

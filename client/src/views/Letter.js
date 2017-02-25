@@ -84,7 +84,7 @@ class Letter extends React.Component {
 		this.canvas = document.getElementById('canvas')
 		this.rect = this.canvas.getBoundingClientRect()
 		this.ctx = this.canvas.getContext('2d')
-		let style = window.getComputedStyle(this.canvas)
+		const style = window.getComputedStyle(this.canvas)
 		this.ctx.canvas.width = parseInt(style.getPropertyValue('width'), 10)
 		this.ctx.canvas.height = parseInt(style.getPropertyValue('height'), 10)
 		this.ctx.lineWidth = 10
@@ -111,7 +111,7 @@ class Letter extends React.Component {
 	}
 
 	onDown(x,y) {
-		let current = this.currentPoint(x, y)
+		const current = this.currentPoint(x, y)
 		this.points.push(current)
 		this.lastPoint = current
 		this.isDrawing = true
@@ -124,7 +124,7 @@ class Letter extends React.Component {
 	}
 
 	onUp() {
-		let newStrokes = {
+		const newStrokes = {
 			points: this.points,
 			startTime: this.startTime,
 			endTime: (new Date()).getTime()
@@ -138,9 +138,9 @@ class Letter extends React.Component {
 	}
 
 	onMove(x, y) {
-		let current = this.currentPoint(x, y)
+		const current = this.currentPoint(x, y)
 
-		let midPoint = this.midPoint(this.lastPoint, current)
+		const midPoint = this.midPoint(this.lastPoint, current)
 		this.ctx.quadraticCurveTo(this.lastPoint.x, this.lastPoint.y, midPoint.x, midPoint.y)
 		this.ctx.stroke()
 

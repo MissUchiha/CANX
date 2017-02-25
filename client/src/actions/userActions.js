@@ -12,7 +12,7 @@ export function register(user) {
       auth.login(response.user, response.jwt)
       dispatch(registerSuccess(response.user))
     }).catch(error => {
-      throw(error)
+      throw error;
     })
   }
 }
@@ -78,7 +78,7 @@ export function storeRememberedUserSuccess(user) {
 
 export function storeRememberedUser(user) {
   return function (dispatch) {
-    let promisse = new Promise((resolve, reject) => resolve(user) )
+    const promisse = new Promise((resolve, reject) => resolve(user) )
     return promisse.then((user) => {
       dispatch(storeRememberedUserSuccess(user))
     }).catch(error => {

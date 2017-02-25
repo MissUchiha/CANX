@@ -4,7 +4,7 @@ class Utils {
 	}
 
   static getFilteredCategory(categories, category) {
-		let filteredCategory = categories.filter((cat) => {
+		const filteredCategory = categories.filter((cat) => {
 					if(cat.name.toLowerCase() === category.toLowerCase())
 						return true
 					return false
@@ -18,8 +18,8 @@ class Utils {
 	}
 
 	static getBeforeLetter(categories, props) {
-		let category = this.getFilteredCategory(categories, props.category)
-		let ind = category.value.indexOf(props.letter)
+		const category = this.getFilteredCategory(categories, props.category)
+		const ind = category.value.indexOf(props.letter)
 
 		if(ind !== -1)
 			if(ind === 0)
@@ -30,8 +30,8 @@ class Utils {
 	}
 
 	static getAfterLetter(categories, props) {
-		let category = this.getFilteredCategory(categories, props.category)
-		let ind = category.value.indexOf(props.letter)
+		const category = this.getFilteredCategory(categories, props.category)
+		const ind = category.value.indexOf(props.letter)
 
 		if(ind !== -1)
 			if(ind === category.value.length - 1)
@@ -42,8 +42,8 @@ class Utils {
 	}
 
 	static getBeforeCategory(categories, category) {
-		let cat = this.getFilteredCategory(categories, category)
-		let ind = categories.indexOf(cat)
+		const cat = this.getFilteredCategory(categories, category)
+		const ind = categories.indexOf(cat)
 
 		if(ind !== -1)
 			if(ind === 0)
@@ -53,9 +53,9 @@ class Utils {
 	}
 
 	static getAfterCategory(categories, category) {
-		let cat = this.getFilteredCategory(categories, category)
+		const cat = this.getFilteredCategory(categories, category)
 
-		let ind = categories.indexOf(cat)
+		const ind = categories.indexOf(cat)
 
 		if(ind !== -1)
 			if(ind === categories.length - 1)
@@ -77,8 +77,13 @@ class Utils {
 	}
 
 	static testEmail(email) {
-      let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return regEx.test(email)
+	}
+
+	static onTouchStart(e){
+		e.preventDefault();
+		e.target.onclick();
 	}
 }
 

@@ -10,7 +10,7 @@ class MainLayout extends React.Component {
 
     componentWillMount() {
       this.props.categoriesActions.loadCategories()
-      let rememberedUser = auth.getRememberedUser()
+      const rememberedUser = auth.getRememberedUser()
       if(rememberedUser){
         this.props.userActions.storeRememberedUser(rememberedUser)
       }

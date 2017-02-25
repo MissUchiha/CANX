@@ -13,10 +13,10 @@ function login(req, res, next) {
   User.readCredentials(credentials)
       .then((user) => {
         const token = jwt.sign({ email: user.email},
-                                config.jwtSecret);
+                                 config.jwtSecret);
         return res.json({
-         token,
-         email: user.email
+         jwt: token,
+         user: user
         });
       })
       .catch(e => next(e))
@@ -61,7 +61,13 @@ function createUser(req, res, next) {
   const user = { ...req.body}
 
   User.create(user)
-      .then(user => res.json(user))
+      .then(user => {
+        const token = jwt.sign({ email: user.email},
+                                 config.jwtSecret);
+        // TODO: send token through Header not working
+        // res.header('Autorization', 'Bearer ' + token)
+        res.json({user, jwt: token})
+      })
       .catch(e => next(e))
 }
 

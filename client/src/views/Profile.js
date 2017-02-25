@@ -40,7 +40,7 @@ class Profile extends React.Component {
    }
 
    change(ev) {
-     let name = ev.target.name
+     const name = ev.target.name
      if(!this.testField(name, ev.target.value))
         ev.target.classList.add('btn-err')
      else

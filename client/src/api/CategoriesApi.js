@@ -5,7 +5,7 @@ class CategoriesApi {
 
   static getAllCategories() {
     const headers = Object.assign(utils.getTypeHeaders(), auth.authHeaders())
-    const request = new Request(`http://localhost:3000/api/categories`, {
+    const request = new Request(`http://192.168.1.173:3000/api/category`, {
       method: 'GET',
       headers: headers
     })
