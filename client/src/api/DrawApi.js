@@ -13,9 +13,10 @@ class DrawApi {
     })
 
     return fetch(request).then(response => {
-      return response.json()
-    }).catch(error => {
-      return error
+      if(response.status >= 200 && response.status < 300)
+        return response.json().then(res => res)
+      else
+        throw new Error("Cannot send drawing.")
     })
   }
 }

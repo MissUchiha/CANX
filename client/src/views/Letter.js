@@ -3,13 +3,13 @@ import Footer from './Footer'
 import Modal from 'react-modal'
 import {modalStyle} from '../style/modalStyle.js'
 import DrawApi from '../api/DrawApi'
+import ErrorModal from './ErrorModal'
 
 class Letter extends React.Component {
 	constructor(...args) {
 		super(...args)
 
-		this.openDeleteModal = this.openDeleteModal.bind(this)
-		this.openSaveModal = this.openSaveModal.bind(this)
+		this.openModal = this.openModal.bind(this)
 		this.closeModal = this.closeModal.bind(this)
 		this.clearCanvas = this.clearCanvas.bind(this)
 		this.saveCanvas = this.saveCanvas.bind(this)
@@ -40,9 +40,11 @@ class Letter extends React.Component {
 
 	initState() {
 		this.state = {
-			deleteModalIsOpen: false,
-			saveModalIsOpen: false,
-			strokes: [],
+			openDeleteModal: false,
+			openSaveModal: false,
+			openErrorModal: false,
+			errorTitle: "",
+			strokes: []
 		}
 	}
 
@@ -58,16 +60,12 @@ class Letter extends React.Component {
 		this.startTime = null
 	}
 
-	openDeleteModal() {
-	 	this.setState({deleteModalIsOpen: true})
-	}
-
-	openSaveModal() {
-	 	this.setState({saveModalIsOpen: true})
+	openModal(opened) {
+		return () => this.setState({[opened] : true})
 	}
 
 	closeModal() {
-		this.setState({deleteModalIsOpen: false, saveModalIsOpen: false})
+		this.setState({openDeleteModal: false, openSaveModal: false, openErrorModal: false})
 	}
 
 	componentWillMount() {
@@ -250,7 +248,7 @@ class Letter extends React.Component {
 											category: capitalizedCategory,
 											content: JSON.stringify(transformedStrokes),
 											uid: this.props.args.id
-										})
+										}).catch(err => this.openModal('openErrorModal'))
 
 		this.clearCanvas()
 		this.closeModal()
@@ -274,9 +272,9 @@ class Letter extends React.Component {
 						onTouchEnd={this.handleOnTouchEnd}
 						onTouchMove={this.handleOnTouchMove}
 						></canvas>
-    			<div className='letter-btn-left' onClick={this.openDeleteModal} > </div>
-				<div className='letter-btn-right' onClick={this.openSaveModal} > </div>
-				<Modal isOpen={this.state.deleteModalIsOpen}
+    			<div className='letter-btn-left' onClick={this.openModal("openDeleteModal")} > </div>
+				<div className='letter-btn-right' onClick={this.openModal("openSaveModal")} > </div>
+				<Modal isOpen={this.state.openDeleteModal}
 						   onRequestClose={this.closeModal}
 						   contentLabel="Delete"
 						   shouldCloseOnOverlayClick={true}
@@ -291,7 +289,7 @@ class Letter extends React.Component {
 
 				</Modal>
 
-				<Modal isOpen={this.state.saveModalIsOpen}
+				<Modal isOpen={this.state.openSaveModal}
 							 onRequestClose={this.closeModal}
 							 contentLabel="Save"
 							 shouldCloseOnOverlayClick={true}
@@ -305,6 +303,10 @@ class Letter extends React.Component {
 					<button className='modal-no modal-close' type='button' value='No' onTouchStart={this.closeModal} onClick={this.closeModal}> </button>
 
 				</Modal>
+				<ErrorModal  args={{title: this.state.errorTitle,
+					closeModal: this.closeModal,
+					isOpen: this.state.openErrorModal}} />
+
 				<div className='footer-back'></div>
 				<Footer args={argsFoot}/>
 

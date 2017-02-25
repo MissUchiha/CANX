@@ -39,13 +39,13 @@ class Register extends React.Component {
     }
 
     openErrorModal(error){
-        console.log("udje modal")
         this.closeModal("openModal")
-        this.setState({errorTitle: error})
+        this.setState({errorTitle: error.message})
         this.openModal("openErrorModal")
     }
-    createUser(ev) {
-        ev.preventDefault()
+
+    createUser(e) {
+        e.preventDefault()
         if(utils.testName(this.user.name) && utils.testEmail(this.user.email) && utils.testPass(this.user.password) && utils.testConfirmPass(this.user.password, this.user.confirmPassword))
           this.props.actions.register({ name: this.user.name,
                                         email: this.user.email,
@@ -54,7 +54,7 @@ class Register extends React.Component {
                                         ident: "-"
           }).catch(error => {this.openErrorModal(error)})
 
-        this.closeModal("openModal")
+        // this.closeModal("openModal")
     }
 
     testField(name, value) {
@@ -93,13 +93,13 @@ class Register extends React.Component {
       return true
     }
 
-    onChange(ev) {
-      return this.testField(ev.target.name, ev.target.value)
+    onChange(e) {
+      return this.testField(e.target.name, e.target.value)
     }
 
-    onBlur(ev) {
-      const name = ev.target.name
-      const value = ev.target.value
+    onBlur(e) {
+      const name = e.target.name
+      const value = e.target.value
 
       if(!this.testField(name,value))
         return false

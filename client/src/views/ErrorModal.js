@@ -10,7 +10,7 @@ function ErrorModal(props) {
            shouldCloseOnOverlayClick={true}
            style={modalStyle}>
       <h2> {props.args.title} </h2>
-      <button className='modal-no  modal-close' value='Close' onClick={props.args.closeModal}></button>
+      <button className='modal-ok  modal-close' value='Close' onClick={props.args.closeModal}></button>
     </Modal>
   )
 }

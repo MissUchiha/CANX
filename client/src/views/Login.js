@@ -6,13 +6,16 @@ import { connect } from 'react-redux'
 import md5 from 'js-md5'
 import * as userActions from '../actions/userActions'
 import utils from '../utils/utils'
+import ErrorModal from './ErrorModal'
 
 class Login extends React.Component {
     constructor(...args) {
       super(...args)
 
       this.state = {
-        openModal: false
+        openModal: false,
+        openErrorModal: false,
+        errorTitle: ""
       }
 
       this.credentials = {
@@ -22,6 +25,7 @@ class Login extends React.Component {
 
       this.openModal = this.openModal.bind(this)
       this.closeModal = this.closeModal.bind(this)
+      this.openErrorModal = this.openErrorModal.bind(this)
       this.testField = this.testField.bind(this)
       this.onBlur = this.onBlur.bind(this)
       this.onChange = this.onChange.bind(this)
@@ -34,7 +38,11 @@ class Login extends React.Component {
     }
 
     closeModal() {
-      this.setState({openModal: false})
+      this.setState({openModal: false, openErrorModal: false})
+    }
+
+    openErrorModal(error){
+        this.setState({openErrorModal: true, errorTitle: error.message})
     }
 
     testField(name, value) {
@@ -61,13 +69,13 @@ class Login extends React.Component {
       return true
     }
 
-    onChange(ev) {
-      return this.testField(ev.target.name, ev.target.value)
+    onChange(e) {
+      return this.testField(e.target.name, e.target.value)
     }
 
-    onBlur(ev) {
-      const name = ev.target.name
-      const value = ev.target.value
+    onBlur(e) {
+      const name = e.target.name
+      const value = e.target.value
 
       if(!this.testField(name,value))
         return false
@@ -75,13 +83,12 @@ class Login extends React.Component {
       this.credentials[name] = value
     }
 
-    login(ev) {
-        ev.preventDefault()
-        // ev.stopPropagation()
+    login(e) {
+        e.preventDefault()
         if(utils.testEmail(this.credentials.email) && utils.testPass(this.credentials.password)){
           this.props.actions.loginUser({ email: this.credentials.email,
                                          password: md5(this.credentials.password)
-          })
+          }).catch( err => this.openErrorModal(err))
         }
     }
 
@@ -122,6 +129,9 @@ class Login extends React.Component {
               <div className='modal-register-title'> LOGIN FAILED! </div>
               <button className='modal-ok ' onClick={this.closeModal}> </button>
             </Modal>
+            <ErrorModal  args={{title: this.state.errorTitle,
+                                closeModal: this.closeModal,
+                                isOpen: this.state.openErrorModal}} />
       		</div>
       )
     }

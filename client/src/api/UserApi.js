@@ -12,9 +12,10 @@ class UserApi {
     })
 
     return fetch(request).then(response => {
-      return response.json().then((res) => res ).catch( error => error)
-    }).catch(error => {
-      return error
+      if(response.status >= 200 && response.status < 300)
+        return response.json().then(res => res)
+      else
+        throw new Error("Cannot create user.")
     })
   }
 
@@ -27,14 +28,12 @@ class UserApi {
     })
 
     return fetch(request).then(response => {
-      return response.json().then((res) => {
-        return res;
-      })
-    }).catch(error => {
-      return error
+      if(response.status >= 200 && response.status < 300)
+        return response.json().then(res => res)
+      else
+        throw new Error("Cannot login user.")
     })
   }
-
   static update(user) {
     const headers = Object.assign(utils.getTypeHeaders(), auth.authHeaders())
     const request = new Request(`http://192.168.1.173:3000/api/user/${user.id}`, {
@@ -44,9 +43,10 @@ class UserApi {
     })
 
     return fetch(request).then(response => {
-      return response
-    }).catch(error => {
-      return error
+      if(response.status >= 200 && response.status < 300)
+        return response.json().then(res => res)
+      else
+        throw new Error("Cannot update user.")
     })
   }
 
@@ -62,9 +62,10 @@ class UserApi {
     })
 
     return fetch(request).then(response => {
-      return response.json().then((r) => r.avatar)
-    }).catch(error => {
-      return error
+      if(response.status >= 200 && response.status < 300)
+        return response.json().then(res => res.avatar)
+      else
+        throw new Error("Cannot upload user photo.")
     })
   }
 }

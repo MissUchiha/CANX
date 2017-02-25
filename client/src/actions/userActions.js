@@ -9,11 +9,9 @@ export function registerSuccess(user) {
 export function register(user) {
   return function (dispatch) {
     return UserApi.register(user).then(response => {
-      auth.login(response.user, response.jwt)
-      dispatch(registerSuccess(response.user))
-    }).catch(error => {
-      throw error;
-    })
+        auth.login(response.user, response.jwt)
+        dispatch(registerSuccess(response.user))
+   }).catch(err => Promise.reject(err) )
   }
 }
 
@@ -26,9 +24,7 @@ export function loginUser(credentials) {
     return UserApi.login(credentials).then(response => {
       auth.login(response.user, response.jwt)
       dispatch(loginSuccess(response.user))
-    }).catch(error => {
-      throw(error)
-    })
+    }).catch(err => Promise.reject(err) )
   }
 }
 
@@ -51,9 +47,7 @@ export function updateProfile(user) {
   return function (dispatch) {
     return UserApi.update(user).then(res => {
         dispatch(updateProfileSuccess(user))
-    }).catch(error => {
-      throw(error)
-    })
+    }).catch(err => Promise.reject(err) )
   }
 }
 
@@ -64,11 +58,10 @@ export function updatePhotoSuccess(user) {
 export function updatePhoto(user) {
   return function (dispatch) {
     return UserApi.updatePhoto(user).then(res => {
+      // Hack for cache prevention
         const avatarPath = "http://localhost:3000" + res + "?v=" + parseInt(Math.random()*100000, 10)
         dispatch(updatePhotoSuccess(Object.assign(user, {avatar: avatarPath})))
-    }).catch(error => {
-      throw(error)
-    })
+    }).catch(err => Promise.reject(err) )
   }
 }
 
@@ -78,11 +71,9 @@ export function storeRememberedUserSuccess(user) {
 
 export function storeRememberedUser(user) {
   return function (dispatch) {
-    const promisse = new Promise((resolve, reject) => resolve(user) )
-    return promisse.then((user) => {
+    const promise = new Promise.resolve(user)
+    return promise.then((user) => {
       dispatch(storeRememberedUserSuccess(user))
-    }).catch(error => {
-      throw(error)
-    })
+    }).catch(err => Promise.reject(err) )
   }
 }

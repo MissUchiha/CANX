@@ -10,10 +10,12 @@ class CategoriesApi {
       headers: headers
     })
     return fetch(request).then(response => {
+      if(response.status >= 200 && response.status < 300)
       return response.json().then( res =>
-          res.map((cat) => { return {name: cat.name, value: cat.letters.join("")}})
-    )}).catch(error => {
-      return error
+        res.map(cat => { return {name: cat.name, value: cat.letters.join("") } } )
+      )
+      else
+        throw new Error("Cannot fetch categories.")
     })
   }
 }

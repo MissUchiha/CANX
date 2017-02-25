@@ -1,4 +1,5 @@
 import React from 'react'
+import ErrorModal from './ErrorModal'
 import utils from '../utils/utils'
 import md5 from 'js-md5'
 
@@ -8,7 +9,9 @@ class Profile extends React.Component {
   		this.state = {
   			openName: false,
   			openEmail: false,
-  			openPassword: false
+  			openPassword: false,
+        openErrorModal: false,
+        errorTitle: ""
       }
       this.user = {
         name: this.props.args.user.name,
@@ -25,6 +28,8 @@ class Profile extends React.Component {
       this.readerLoad = this.readerLoad.bind(this)
       this.loadPhoto = this.loadPhoto.bind(this)
       this.updatePhoto = this.updatePhoto.bind(this)
+      this.openErrorModal = this.openErrorModal.bind(this)
+      this.closeErrorModal = this.closeErrorModal.bind(this)
 	  }
 
     componentDidMount() {
@@ -39,12 +44,12 @@ class Profile extends React.Component {
       return () => this.setState({[opened] : !this.state[opened]})
    }
 
-   change(ev) {
-     const name = ev.target.name
-     if(!this.testField(name, ev.target.value))
-        ev.target.classList.add('btn-err')
+   change(e) {
+     const name = e.target.name
+     if(!this.testField(name, e.target.value))
+        e.target.classList.add('btn-err')
      else
-        ev.target.classList.remove('btn-err')
+        e.target.classList.remove('btn-err')
 
    }
 
@@ -68,12 +73,12 @@ class Profile extends React.Component {
                                        avatar: this.user.avatar,
                                        ident: this.props.args.user.ident,
                                        id: this.props.args.user.id
-     })
+     }).catch( err => this.openErrorModal(err))
    }
 
-   updateField(ev){
-     ev.preventDefault()
-     const name = ev.target.name
+   updateField(e){
+     e.preventDefault()
+     const name = e.target.name
      const newValue = document.querySelector(`.form-control[name='${name}']`).value
      if(this.testField(name, newValue)) {
         this.user[name] = newValue
@@ -82,10 +87,10 @@ class Profile extends React.Component {
       }
    }
 
-   uploadPhoto(ev) {
+   uploadPhoto(e) {
   		const reader = new FileReader()
       reader.onload = this.readerLoad
-      reader.readAsDataURL(ev.target.files[0])
+      reader.readAsDataURL(e.target.files[0])
    }
 
    loadPhoto(){
@@ -97,8 +102,8 @@ class Profile extends React.Component {
        }
    }
 
-   readerLoad(ev) {
-     this.user.avatar = ev.target.result
+   readerLoad(e) {
+     this.user.avatar = e.target.result
      this.loadPhoto()
 
 // TODO: put this call somewhere else
@@ -112,7 +117,16 @@ class Profile extends React.Component {
                                        avatar: this.user.avatar,
                                        ident: this.props.args.user.ident,
                                        id: this.props.args.user.id
-       })
+       }).catch( err => this.openErrorModal(err))
+   }
+
+   openErrorModal(error){
+       this.setState({openErrorModal: true, errorTitle: error.message})
+   }
+
+   closeErrorModal(e){
+     e.preventDefault()
+     this.setState({openErrorModal: false})
    }
 
    render() {
@@ -156,6 +170,10 @@ class Profile extends React.Component {
 					<input type='submit' className='btn' name='password' onClick={this.updateField} value="Save"/>
 				</div>
 		  </div>
+
+      <ErrorModal  args={{title: this.state.errorTitle,
+                          closeModal: this.closeErrorModal,
+                          isOpen: this.state.openErrorModal}} />
     </div>
 	  )
   }
