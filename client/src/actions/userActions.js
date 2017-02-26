@@ -71,7 +71,7 @@ export function storeRememberedUserSuccess(user) {
 
 export function storeRememberedUser(user) {
   return function (dispatch) {
-    const promise = new Promise.resolve(user)
+    const promise = Promise.resolve(user)
     return promise.then((user) => {
       dispatch(storeRememberedUserSuccess(user))
     }).catch(err => Promise.reject(err) )

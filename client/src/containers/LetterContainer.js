@@ -9,7 +9,7 @@ function mapStateToProps(state, ownProps) {
 			before: utils.getBeforeLetter(state.categories, ownProps.params),
 			after: utils.getAfterLetter(state.categories, ownProps.params),
 			title: ownProps.params.category,
-      id: state.user.id
+      id: state.user._id
 		}
   }
 }

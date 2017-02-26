@@ -1,22 +1,20 @@
 import auth from '../auth/authentication'
 import utils from '../utils/utils'
+import FetchApi from './FetchApi'
 
 class DrawApi {
 
-  // TODO: implement draw process logic
   static postDraw(data) {
     const headers = Object.assign(utils.getTypeHeaders(), auth.authHeaders());
-    const request = new Request(`http://192.168.1.173:3000/api/user/${data.uid}/drawing`, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(data)
-    })
-
-    return fetch(request).then(response => {
-      if(response.status >= 200 && response.status < 300)
-        return response.json().then(res => res)
-      else
-        throw new Error("Cannot send drawing.")
+		console.log(data)
+    return FetchApi.post({ path: `api/user/${data.uid}/drawing`,
+													body: JSON.stringify(data),
+		 											headers})
+									 .then(response => {
+								      if(response.status >= 200 && response.status < 300)
+								        return response.json().then(res => res)
+								      else
+								        throw new Error("Cannot send drawing.")
     })
   }
 }
