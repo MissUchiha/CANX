@@ -14,7 +14,6 @@ let createdStore = createStore(
 )
 
 createdStore.subscribe(() => {
-  console.log('STORE')
   console.log(createdStore.getState())
   const state = createdStore.getState()
 
